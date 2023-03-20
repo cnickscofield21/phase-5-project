@@ -112,73 +112,73 @@ Sentence.create(sentence_date: "02/09/2016", sentence: "17Y-17Y", county: "JEFFE
 Sentence.create(sentence_date: "02/09/2016", sentence: "10Y-10Y", county: "JEFFERSON", case_number: "15CR2137", client_id: c4.id)
 Sentence.create(sentence_date: "02/09/2016", sentence: "6Y-6Y", county: "JEFFERSON", case_number: "15CR2137", client_id: c4.id)
 
-puts "Creating Sentence Variables..."
-s0 = Sentence.all[0]
-s1 = Sentence.all[1]
-s2 = Sentence.all[2]
-s3 = Sentence.all[3]
-s4 = Sentence.all[4]
-s5 = Sentence.all[5]
-s6 = Sentence.all[6]
-s7 = Sentence.all[7]
-s8 = Sentence.all[8]
-s9 = Sentence.all[9]
-s10 = Sentence.all[10]
-s11 = Sentence.all[11]
-s12 = Sentence.all[12]
-s13 = Sentence.all[13]
-s14 = Sentence.all[14]
-s15 = Sentence.all[15]
-s16 = Sentence.all[16]
-s17 = Sentence.all[17]
-s18 = Sentence.all[18]
-s19 = Sentence.all[19]
-s20 = Sentence.all[20]
-s21 = Sentence.all[21]
-s22 = Sentence.all[22]
-s23 = Sentence.all[23]
-s24 = Sentence.all[24]
-s25 = Sentence.all[25]
-s26 = Sentence.all[26]
-s27 = Sentence.all[27]
-s28 = Sentence.all[28]
-s29 = Sentence.all[29]
-s30 = Sentence.all[30]
-s31 = Sentence.all[31]
+# puts "Creating Sentence Variables..."
+# s0 = Sentence.all[0]
+# s1 = Sentence.all[1]
+# s2 = Sentence.all[2]
+# s3 = Sentence.all[3]
+# s4 = Sentence.all[4]
+# s5 = Sentence.all[5]
+# s6 = Sentence.all[6]
+# s7 = Sentence.all[7]
+# s8 = Sentence.all[8]
+# s9 = Sentence.all[9]
+# s10 = Sentence.all[10]
+# s11 = Sentence.all[11]
+# s12 = Sentence.all[12]
+# s13 = Sentence.all[13]
+# s14 = Sentence.all[14]
+# s15 = Sentence.all[15]
+# s16 = Sentence.all[16]
+# s17 = Sentence.all[17]
+# s18 = Sentence.all[18]
+# s19 = Sentence.all[19]
+# s20 = Sentence.all[20]
+# s21 = Sentence.all[21]
+# s22 = Sentence.all[22]
+# s23 = Sentence.all[23]
+# s24 = Sentence.all[24]
+# s25 = Sentence.all[25]
+# s26 = Sentence.all[26]
+# s27 = Sentence.all[27]
+# s28 = Sentence.all[28]
+# s29 = Sentence.all[29]
+# s30 = Sentence.all[30]
+# s31 = Sentence.all[31]
 
-puts "Testing Sentence Variables..."
-puts "#{s0.sentence_date} #{s0.sentence} #{s0.sentence_date} #{s0.county} #{s0.case_number} #{s0.client_id}"
-puts "#{s1.sentence_date} #{s1.sentence} #{s1.sentence_date} #{s1.county} #{s1.case_number} #{s1.client_id}"
-puts "#{s2.sentence_date} #{s2.sentence} #{s2.sentence_date} #{s2.county} #{s2.case_number} #{s2.client_id}"
-puts "#{s3.sentence_date} #{s3.sentence} #{s3.sentence_date} #{s3.county} #{s3.case_number} #{s3.client_id}"
-puts "#{s4.sentence_date} #{s4.sentence} #{s4.sentence_date} #{s4.county} #{s4.case_number} #{s4.client_id}"
-puts "#{s5.sentence_date} #{s5.sentence} #{s5.sentence_date} #{s5.county} #{s5.case_number} #{s5.client_id}"
-puts "#{s6.sentence_date} #{s6.sentence} #{s6.sentence_date} #{s6.county} #{s6.case_number} #{s6.client_id}"
-puts "#{s7.sentence_date} #{s7.sentence} #{s7.sentence_date} #{s7.county} #{s7.case_number} #{s7.client_id}"
-puts "#{s8.sentence_date} #{s8.sentence} #{s8.sentence_date} #{s8.county} #{s8.case_number} #{s8.client_id}"
-puts "#{s9.sentence_date} #{s9.sentence} #{s9.sentence_date} #{s9.county} #{s9.case_number} #{s9.client_id}"
-puts "#{s10.sentence_date} #{s10.sentence} #{s10.sentence_date} #{s10.county} #{s10.case_number} #{s10.client_id}"
-puts "#{s11.sentence_date} #{s11.sentence} #{s11.sentence_date} #{s11.county} #{s11.case_number} #{s11.client_id}"
-puts "#{s12.sentence_date} #{s12.sentence} #{s12.sentence_date} #{s12.county} #{s12.case_number} #{s12.client_id}"
-puts "#{s13.sentence_date} #{s13.sentence} #{s13.sentence_date} #{s13.county} #{s13.case_number} #{s13.client_id}"
-puts "#{s14.sentence_date} #{s14.sentence} #{s14.sentence_date} #{s14.county} #{s14.case_number} #{s14.client_id}"
-puts "#{s15.sentence_date} #{s15.sentence} #{s15.sentence_date} #{s15.county} #{s15.case_number} #{s15.client_id}"
-puts "#{s16.sentence_date} #{s16.sentence} #{s16.sentence_date} #{s16.county} #{s16.case_number} #{s16.client_id}"
-puts "#{s17.sentence_date} #{s17.sentence} #{s17.sentence_date} #{s17.county} #{s17.case_number} #{s17.client_id}"
-puts "#{s18.sentence_date} #{s18.sentence} #{s18.sentence_date} #{s18.county} #{s18.case_number} #{s18.client_id}"
-puts "#{s19.sentence_date} #{s19.sentence} #{s19.sentence_date} #{s19.county} #{s19.case_number} #{s19.client_id}"
-puts "#{s20.sentence_date} #{s20.sentence} #{s20.sentence_date} #{s20.county} #{s20.case_number} #{s20.client_id}"
-puts "#{s21.sentence_date} #{s21.sentence} #{s21.sentence_date} #{s21.county} #{s21.case_number} #{s21.client_id}"
-puts "#{s22.sentence_date} #{s22.sentence} #{s22.sentence_date} #{s22.county} #{s22.case_number} #{s22.client_id}"
-puts "#{s23.sentence_date} #{s23.sentence} #{s23.sentence_date} #{s23.county} #{s23.case_number} #{s23.client_id}"
-puts "#{s24.sentence_date} #{s24.sentence} #{s24.sentence_date} #{s24.county} #{s24.case_number} #{s24.client_id}"
-puts "#{s25.sentence_date} #{s25.sentence} #{s25.sentence_date} #{s25.county} #{s25.case_number} #{s25.client_id}"
-puts "#{s26.sentence_date} #{s26.sentence} #{s26.sentence_date} #{s26.county} #{s26.case_number} #{s26.client_id}"
-puts "#{s27.sentence_date} #{s27.sentence} #{s27.sentence_date} #{s27.county} #{s27.case_number} #{s27.client_id}"
-puts "#{s28.sentence_date} #{s28.sentence} #{s28.sentence_date} #{s28.county} #{s28.case_number} #{s28.client_id}"
-puts "#{s29.sentence_date} #{s29.sentence} #{s29.sentence_date} #{s29.county} #{s29.case_number} #{s29.client_id}"
-puts "#{s30.sentence_date} #{s30.sentence} #{s30.sentence_date} #{s30.county} #{s30.case_number} #{s30.client_id}"
-puts "#{s31.sentence_date} #{s31.sentence} #{s31.sentence_date} #{s31.county} #{s31.case_number} #{s31.client_id}"
+# puts "Testing Sentence Variables..."
+# puts "#{s0.sentence_date} #{s0.sentence} #{s0.sentence_date} #{s0.county} #{s0.case_number} #{s0.client_id}"
+# puts "#{s1.sentence_date} #{s1.sentence} #{s1.sentence_date} #{s1.county} #{s1.case_number} #{s1.client_id}"
+# puts "#{s2.sentence_date} #{s2.sentence} #{s2.sentence_date} #{s2.county} #{s2.case_number} #{s2.client_id}"
+# puts "#{s3.sentence_date} #{s3.sentence} #{s3.sentence_date} #{s3.county} #{s3.case_number} #{s3.client_id}"
+# puts "#{s4.sentence_date} #{s4.sentence} #{s4.sentence_date} #{s4.county} #{s4.case_number} #{s4.client_id}"
+# puts "#{s5.sentence_date} #{s5.sentence} #{s5.sentence_date} #{s5.county} #{s5.case_number} #{s5.client_id}"
+# puts "#{s6.sentence_date} #{s6.sentence} #{s6.sentence_date} #{s6.county} #{s6.case_number} #{s6.client_id}"
+# puts "#{s7.sentence_date} #{s7.sentence} #{s7.sentence_date} #{s7.county} #{s7.case_number} #{s7.client_id}"
+# puts "#{s8.sentence_date} #{s8.sentence} #{s8.sentence_date} #{s8.county} #{s8.case_number} #{s8.client_id}"
+# puts "#{s9.sentence_date} #{s9.sentence} #{s9.sentence_date} #{s9.county} #{s9.case_number} #{s9.client_id}"
+# puts "#{s10.sentence_date} #{s10.sentence} #{s10.sentence_date} #{s10.county} #{s10.case_number} #{s10.client_id}"
+# puts "#{s11.sentence_date} #{s11.sentence} #{s11.sentence_date} #{s11.county} #{s11.case_number} #{s11.client_id}"
+# puts "#{s12.sentence_date} #{s12.sentence} #{s12.sentence_date} #{s12.county} #{s12.case_number} #{s12.client_id}"
+# puts "#{s13.sentence_date} #{s13.sentence} #{s13.sentence_date} #{s13.county} #{s13.case_number} #{s13.client_id}"
+# puts "#{s14.sentence_date} #{s14.sentence} #{s14.sentence_date} #{s14.county} #{s14.case_number} #{s14.client_id}"
+# puts "#{s15.sentence_date} #{s15.sentence} #{s15.sentence_date} #{s15.county} #{s15.case_number} #{s15.client_id}"
+# puts "#{s16.sentence_date} #{s16.sentence} #{s16.sentence_date} #{s16.county} #{s16.case_number} #{s16.client_id}"
+# puts "#{s17.sentence_date} #{s17.sentence} #{s17.sentence_date} #{s17.county} #{s17.case_number} #{s17.client_id}"
+# puts "#{s18.sentence_date} #{s18.sentence} #{s18.sentence_date} #{s18.county} #{s18.case_number} #{s18.client_id}"
+# puts "#{s19.sentence_date} #{s19.sentence} #{s19.sentence_date} #{s19.county} #{s19.case_number} #{s19.client_id}"
+# puts "#{s20.sentence_date} #{s20.sentence} #{s20.sentence_date} #{s20.county} #{s20.case_number} #{s20.client_id}"
+# puts "#{s21.sentence_date} #{s21.sentence} #{s21.sentence_date} #{s21.county} #{s21.case_number} #{s21.client_id}"
+# puts "#{s22.sentence_date} #{s22.sentence} #{s22.sentence_date} #{s22.county} #{s22.case_number} #{s22.client_id}"
+# puts "#{s23.sentence_date} #{s23.sentence} #{s23.sentence_date} #{s23.county} #{s23.case_number} #{s23.client_id}"
+# puts "#{s24.sentence_date} #{s24.sentence} #{s24.sentence_date} #{s24.county} #{s24.case_number} #{s24.client_id}"
+# puts "#{s25.sentence_date} #{s25.sentence} #{s25.sentence_date} #{s25.county} #{s25.case_number} #{s25.client_id}"
+# puts "#{s26.sentence_date} #{s26.sentence} #{s26.sentence_date} #{s26.county} #{s26.case_number} #{s26.client_id}"
+# puts "#{s27.sentence_date} #{s27.sentence} #{s27.sentence_date} #{s27.county} #{s27.case_number} #{s27.client_id}"
+# puts "#{s28.sentence_date} #{s28.sentence} #{s28.sentence_date} #{s28.county} #{s28.case_number} #{s28.client_id}"
+# puts "#{s29.sentence_date} #{s29.sentence} #{s29.sentence_date} #{s29.county} #{s29.case_number} #{s29.client_id}"
+# puts "#{s30.sentence_date} #{s30.sentence} #{s30.sentence_date} #{s30.county} #{s30.case_number} #{s30.client_id}"
+# puts "#{s31.sentence_date} #{s31.sentence} #{s31.sentence_date} #{s31.county} #{s31.case_number} #{s31.client_id}"
 puts "Turn... Complete."
 
 puts "Creating Users..."
@@ -186,22 +186,22 @@ User.create(first_name: "Stacey", last_name: "Putka", email: "stacey@timetobreak
 User.create(first_name: "Carol", last_name: "Peeples", email: "carol@remerg.com", password: "123$%^qwe", organization_admin: true, organization_id: o1.id)
 User.create(first_name: "Ronald", last_name: "Pierce", email: "ronnie@remerg.com", password: "123$%^qwe", organization_admin: false, organization_id: o1.id)
 User.create(first_name: "Laurie", last_name: "Lazar", email: "laurie@realnessproject.org", password: "123$%^qwe", organization_admin: true, organization_id: o2.id)
-User.create(first_name: "Sean", last_name: "Williams", email: "sean@timetobreakthrough.org", password: "123$%^qwe", organization_admin: false, organization_id: o2.id)
+User.create(first_name: "Sean", last_name: "Williams", email: "sean@timetobreakthrough.org", password: "123$%^qwe", organization_admin: false, organization_id: o0.id)
 User.create(first_name: "Abe", last_name: "Arrington", email: "abe@scccolorado.org", password: "123$%^qwe", organization_admin: true, organization_id: o3.id)
-puts "Creating Sentence Variables..."
-u0 = User.all[0]
-u1 = User.all[1]
-u2 = User.all[2]
-u3 = User.all[3]
-u4 = User.all[4]
-u5 = User.all[5]
+# puts "Creating Sentence Variables..."
+# u0 = User.all[0]
+# u1 = User.all[1]
+# u2 = User.all[2]
+# u3 = User.all[3]
+# u4 = User.all[4]
+# u5 = User.all[5]
 
-puts "Testing Sentence Variables..."
-puts "#{u0.first_name} #{u0.last_name} #{u0.email} #{u0.password_digest} #{u0.organization_admin} #{u0.organization_id}"
-puts "#{u1.first_name} #{u1.last_name} #{u1.email} #{u1.password_digest} #{u1.organization_admin} #{u1.organization_id}"
-puts "#{u2.first_name} #{u2.last_name} #{u2.email} #{u2.password_digest} #{u2.organization_admin} #{u2.organization_id}"
-puts "#{u3.first_name} #{u3.last_name} #{u3.email} #{u3.password_digest} #{u3.organization_admin} #{u3.organization_id}"
-puts "#{u4.first_name} #{u4.last_name} #{u4.email} #{u4.password_digest} #{u4.organization_admin} #{u4.organization_id}"
-puts "#{u5.first_name} #{u5.last_name} #{u5.email} #{u5.password_digest} #{u5.organization_admin} #{u5.organization_id}"
+# puts "Testing Sentence Variables..."
+# puts "#{u0.first_name} #{u0.last_name} #{u0.email} #{u0.password_digest} #{u0.organization_admin} #{u0.organization_id}"
+# puts "#{u1.first_name} #{u1.last_name} #{u1.email} #{u1.password_digest} #{u1.organization_admin} #{u1.organization_id}"
+# puts "#{u2.first_name} #{u2.last_name} #{u2.email} #{u2.password_digest} #{u2.organization_admin} #{u2.organization_id}"
+# puts "#{u3.first_name} #{u3.last_name} #{u3.email} #{u3.password_digest} #{u3.organization_admin} #{u3.organization_id}"
+# puts "#{u4.first_name} #{u4.last_name} #{u4.email} #{u4.password_digest} #{u4.organization_admin} #{u4.organization_id}"
+# puts "#{u5.first_name} #{u5.last_name} #{u5.email} #{u5.password_digest} #{u5.organization_admin} #{u5.organization_id}"
 
 puts "Turn... Complete."

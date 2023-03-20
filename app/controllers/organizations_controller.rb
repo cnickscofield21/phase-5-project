@@ -4,38 +4,30 @@ class OrganizationsController < ApplicationController
   # GET /organizations
   def index
     @organizations = Organization.all
-
-    render json: @organizations
+    render json: @organizations, status: :ok
   end
 
   # GET /organizations/1
   def show
-    render json: @organization
+    render json: @organization, status: :ok
   end
 
   # POST /organizations
   def create
-    @organization = Organization.new(organization_params)
-
-    if @organization.save
-      render json: @organization, status: :created, location: @organization
-    else
-      render json: @organization.errors, status: :unprocessable_entity
-    end
+    @organization = Organization.create!(organization_params)
+    render json: @organization, status: :created, location: @organization
   end
 
   # PATCH/PUT /organizations/1
   def update
-    if @organization.update(organization_params)
-      render json: @organization
-    else
-      render json: @organization.errors, status: :unprocessable_entity
-    end
+    @organization.update!(organization_params)
+      render json: @organization, status: :accepted
   end
 
   # DELETE /organizations/1
   def destroy
     @organization.destroy
+    head :no_content
   end
 
   private
@@ -46,6 +38,7 @@ class OrganizationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def organization_params
-      params.require(:organization).permit(:name, :physical_address, :physical_city, :physical_state, :physical_zip, :phone_number, :mailing_address, :mailing_city, :mailing_state, :mailing_zip, :ein, :valid_non_profit)
+      params.permit(:name, :physical_address, :physical_city, :physical_state, :physical_zip, :phone_number, :mailing_address, :mailing_city, :mailing_state, :mailing_zip, :ein, :valid_non_profit)
     end
+
 end

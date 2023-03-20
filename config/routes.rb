@@ -5,6 +5,12 @@ Rails.application.routes.draw do
   resources :facilities
   resources :organizations
 
-    # route to test your configuration
-    get '/hello', to: 'application#hello_world'
+  # Custom Auth routes
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
+  get '/authorized', to: 'users#show'
+
+  # Alternative ???
+  # get '/me', to: "users#show_me"
+
 end

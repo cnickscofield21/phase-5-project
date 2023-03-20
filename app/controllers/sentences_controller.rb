@@ -4,38 +4,30 @@ class SentencesController < ApplicationController
   # GET /sentences
   def index
     @sentences = Sentence.all
-
-    render json: @sentences
+    render json: @sentences, status: :ok
   end
 
   # GET /sentences/1
   def show
-    render json: @sentence
+    render json: @sentence, status: :ok
   end
 
   # POST /sentences
   def create
-    @sentence = Sentence.new(sentence_params)
-
-    if @sentence.save
-      render json: @sentence, status: :created, location: @sentence
-    else
-      render json: @sentence.errors, status: :unprocessable_entity
-    end
+    @sentence = Sentence.create!(sentence_params)
+    render json: @sentence, status: :created, location: @sentence
   end
 
   # PATCH/PUT /sentences/1
   def update
-    if @sentence.update(sentence_params)
-      render json: @sentence
-    else
-      render json: @sentence.errors, status: :unprocessable_entity
-    end
+    @sentence.update!(sentence_params)
+    render json: @sentence, status: :accepted
   end
 
   # DELETE /sentences/1
   def destroy
     @sentence.destroy
+    head :no_content
   end
 
   private
@@ -46,6 +38,7 @@ class SentencesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def sentence_params
-      params.require(:sentence).permit(:sentence_date, :sentence, :county, :case_number, :client_id)
+      params.permit(:sentence_date, :sentence, :county, :case_number, :client_id)
     end
+
 end

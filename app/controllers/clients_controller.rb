@@ -4,38 +4,31 @@ class ClientsController < ApplicationController
   # GET /clients
   def index
     @clients = Client.all
-
-    render json: @clients
+    render json: @clients, status: :ok
   end
 
   # GET /clients/1
   def show
-    render json: @client
+    render json: @client, status: :ok
   end
 
   # POST /clients
   def create
-    @client = Client.new(client_params)
-
-    if @client.save
-      render json: @client, status: :created, location: @client
-    else
-      render json: @client.errors, status: :unprocessable_entity
-    end
+    @client = Client.create!(client_params)
+    render json: @client, status: :created, location: @client
   end
 
   # PATCH/PUT /clients/1
   def update
-    if @client.update(client_params)
-      render json: @client
-    else
-      render json: @client.errors, status: :unprocessable_entity
-    end
+    @client.update!(client_params)
+    render json: @client, status: :accepted
+
   end
 
   # DELETE /clients/1
   def destroy
     @client.destroy
+    head :no_content
   end
 
   private
@@ -46,6 +39,7 @@ class ClientsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def client_params
-      params.require(:client).permit(:first_name, :last_name, :middle_initial, :age, :ethnicity, :gender, :hair_color, :eye_color, :height, :weight, :doc_number, :est_parole_eligibility_date, :next_parole_hearing_date, :est_mandatory_release_date, :est_sentence_discharge_date, :image, :facilitiy_id, :organization_id)
+      params.permit(:first_name, :last_name, :middle_initial, :age, :ethnicity, :gender, :hair_color, :eye_color, :height, :weight, :doc_number, :est_parole_eligibility_date, :next_parole_hearing_date, :est_mandatory_release_date, :est_sentence_discharge_date, :image, :facility_id, :organization_id)
     end
+
 end
