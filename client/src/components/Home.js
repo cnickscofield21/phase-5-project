@@ -1,6 +1,7 @@
 function Home () {
   return(
     <>
+      <div>I am the home component</div>
     </>
   )
 }
