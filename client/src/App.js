@@ -39,9 +39,9 @@ function App() {
     })
   }
 
-  const addClient = (client) => setClients(current => [...current, client]);
+  const onAddClient = (client) => setClients(current => [...current, client]);
 
-  const updateClient = (updatedClient) => setClients(current => {
+  const onUpdateClient = (updatedClient) => setClients(current => {
     // FIXME: Finish logic
   })
 
@@ -80,8 +80,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/clients" element={<ClientIndex clients={clients} />} />
-          <Route path="/clients/:id" element={<ClientEdit />} />
-          <Route path="/clients/new" element={<ClientCreate />} />
+          {/* TODO: Should I add 'edit' to this path? */}
+          <Route path="/clients/:id" element={<ClientEdit onUpdateClient={onUpdateClient} />} />
+          <Route path="/clients/new" element={<ClientCreate onAddClient={onAddClient} />} />
 
         </Routes>
       </div>
