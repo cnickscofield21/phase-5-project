@@ -64,11 +64,11 @@ f22 = Facility.all[22]
 puts "Turn... Complete."
 
 puts "Creating Clients..."
-Client.create(doc_number: 92442, first_name: "Mario", middle_initial: "", last_name: "Rios", age: 44, ethnicity: "Hispanic", gender: "Male", hair_color: "Red", eye_color: "Brown", height: "6' 02\"", weight: 268, est_parole_eligibility_date: "", next_parole_hearing_date: "", facility_id: f0.id, organization_id: o0.id )
-Client.create(doc_number: 88091, first_name: "Johnathan", middle_initial: "H", last_name: "Jordan", age: 47, ethnicity: "Black", gender: "Male", hair_color: "Black", eye_color: "Brown", height: "6' 04\"", weight: 194, est_parole_eligibility_date: "26/02/2035", next_parole_hearing_date: "Nov 2034", facility_id: f0.id, organization_id: o0.id )
-Client.create(doc_number: 170957, first_name: "Amberlee", middle_initial: "", last_name: "Theodoratos", age: 40, ethnicity: "White", gender: "Female", hair_color: "Brown", eye_color: "Brown", height: "5' 04\"", weight: 145, est_parole_eligibility_date: "25/12/2032", next_parole_hearing_date: "Sep 2032", facility_id: f15.id, organization_id: o0.id )
-Client.create(doc_number: 89148, first_name: "Nathan", middle_initial: "J", last_name: "Dunlap", age: 48, ethnicity: "Black", gender: "Male", hair_color: "Black", eye_color: "Brown", height: "5' 11\"", weight: 195, est_parole_eligibility_date: "", next_parole_hearing_date: "", facility_id: f7.id, organization_id: o0.id )
-Client.create(doc_number: 173587, first_name: "Spencer", middle_initial: "J", last_name: "Siroky", age: 31, ethnicity: "White", gender: "Male", hair_color: "Brown", eye_color: "Hazel", height: "5' 06\"", weight: 168, est_parole_eligibility_date: "01/07/2033", next_parole_hearing_date: "Apr 2033", facility_id: f0.id, organization_id: o0.id )
+Client.create(doc_number: 93442, first_name: "Bob", middle_initial: "", last_name: "Smith", age: 44, ethnicity: "Hispanic", gender: "Male", hair_color: "Red", eye_color: "Brown", height: "6' 02\"", weight: 268, est_parole_eligibility_date: "", next_parole_hearing_date: "", facility_id: f0.id, organization_id: o0.id )
+Client.create(doc_number: 89091, first_name: "Johnathan", middle_initial: "H", last_name: "Murphy", age: 47, ethnicity: "Black", gender: "Male", hair_color: "Black", eye_color: "Brown", height: "6' 04\"", weight: 194, est_parole_eligibility_date: "26/02/2035", next_parole_hearing_date: "Nov 2034", facility_id: f0.id, organization_id: o0.id )
+Client.create(doc_number: 180957, first_name: "Angela", middle_initial: "", last_name: "White", age: 40, ethnicity: "White", gender: "Female", hair_color: "Brown", eye_color: "Brown", height: "5' 04\"", weight: 145, est_parole_eligibility_date: "25/12/2032", next_parole_hearing_date: "Sep 2032", facility_id: f15.id, organization_id: o0.id )
+Client.create(doc_number: 80148, first_name: "Nathan", middle_initial: "J", last_name: "Williams", age: 48, ethnicity: "Black", gender: "Male", hair_color: "Black", eye_color: "Brown", height: "5' 11\"", weight: 195, est_parole_eligibility_date: "", next_parole_hearing_date: "", facility_id: f7.id, organization_id: o0.id )
+Client.create(doc_number: 183587, first_name: "Steven", middle_initial: "J", last_name: "Sanders", age: 31, ethnicity: "White", gender: "Male", hair_color: "Brown", eye_color: "Hazel", height: "5' 06\"", weight: 168, est_parole_eligibility_date: "01/07/2033", next_parole_hearing_date: "Apr 2033", facility_id: f0.id, organization_id: o0.id )
 
 puts "Setting Clients as Variables..."
 c0  = Client.all[0]
@@ -182,7 +182,7 @@ Sentence.create(sentence_date: "02/09/2016", sentence: "6Y-6Y", county: "JEFFERS
 puts "Turn... Complete."
 
 puts "Creating Users..."
-User.create(first_name: "Stacey", last_name: "Putka", email: "stacey@timetobreakthrough.org", password: "123$%^qwe", organization_admin: true, organization_id: o0.id)
+User.create(first_name: "Bill", last_name: "Lennon", email: "milehighhokie@yahoo.com", password: "123$%^qwe", organization_admin: true, organization_id: o0.id)
 User.create(first_name: "Carol", last_name: "Peeples", email: "carol@remerg.com", password: "123$%^qwe", organization_admin: true, organization_id: o1.id)
 User.create(first_name: "Ronald", last_name: "Pierce", email: "ronnie@remerg.com", password: "123$%^qwe", organization_admin: false, organization_id: o1.id)
 User.create(first_name: "Laurie", last_name: "Lazar", email: "laurie@realnessproject.org", password: "123$%^qwe", organization_admin: true, organization_id: o2.id)

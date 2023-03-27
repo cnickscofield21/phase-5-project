@@ -7,7 +7,9 @@ ruby "2.7.4"
 # Commented out, but left behind in case v7 is a problem
 # gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
 # gem "rails", "~> 7.0.4", ">= 7.0.4.3"
+gem 'rake', '~> 13.0', '>= 13.0.6'
 gem "rails", "~> 7.0.4", ">= 7.0.4.2"
+gem 'activerecord-import', '~> 1.4', '>= 1.4.1'
 
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"

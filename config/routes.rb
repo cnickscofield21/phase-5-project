@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   get '/authorized', to: 'users#show'
 
-  # Alternative ???
-  # get '/me', to: "users#show_me"
 
+  # Testing
+  get '/hello', to: 'application#hello_world'
 end

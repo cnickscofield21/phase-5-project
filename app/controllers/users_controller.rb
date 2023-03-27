@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   # Removing show from this array allowed authorization to work!?
   before_action :set_user, only: %i[ update destroy ]
-  skip_before_action :authorize, only: :create
+  # skip_before_action :authorize, only: :create
 
   # GET /users
   def index
