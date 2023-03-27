@@ -5,6 +5,7 @@ import SideBarBottom from "./SideBarBottom";
 
 
 function ClientIndex({clients}) {
+  console.log(clients)
   const [clientList, setClientList] = useState(clients);
   const editPath = "/";
 
@@ -25,7 +26,7 @@ function ClientIndex({clients}) {
     }
   }
 
-  const clientRows = clientList.map(client => {
+  const clientRows = clients.map(client => {
     const {id, last_name, first_name, middle_initial, doc_number, gender, facility} = client;
 
     return (
