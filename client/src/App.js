@@ -45,6 +45,10 @@ function App() {
     // FIXME: Finish logic
   })
 
+  const onDeleteClient = () => setClients(current => {
+    // FIXME: Finish logic
+  })
+
   // TODO: Enable theming
   // const [theme, setTheme] = useState(getTheme);
   // useEffect(() => {

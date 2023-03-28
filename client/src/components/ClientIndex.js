@@ -4,10 +4,9 @@ import { FaPencilAlt, FaTrashAlt } from 'react-icons/fa';
 import SideBarBottom from "./SideBarBottom";
 
 
-function ClientIndex({clients}) {
+function ClientIndex({clients, onDeleteClient}) {
   console.log(clients)
   const [clientList, setClientList] = useState(clients);
-  const editPath = "/";
 
   function handleEditClick(e) {
     // const id = (e.target.tagName == "path") ? e.target.parentNode.dataset.id : e.target.dataset.id;
@@ -21,13 +20,14 @@ function ClientIndex({clients}) {
 
       fetch(`/clients/${id}`, configObj)
       .then(() => {
-        // onDeleteUser();
+        onDeleteClient(id);
       })
     }
   }
 
   const clientRows = clients.map(client => {
     const {id, last_name, first_name, middle_initial, doc_number, gender, facility} = client;
+    const editPath = `/clients/${id}`;
 
     return (
       <tr key={id}>
@@ -38,7 +38,7 @@ function ClientIndex({clients}) {
         <td>{gender.charAt(0)}</td>
         <td>{facility.acronymn}</td>
         <td className="text-center">
-          {/* <Link to={editPath}> */}
+          <Link to={editPath}>
             <button
               className="btn btn-ghost hover:btn-info"
               type="button"
@@ -48,7 +48,7 @@ function ClientIndex({clients}) {
               >
               <FaPencilAlt data-id={id} />
             </button>
-          {/* </Link> */}
+          </Link>
         </td>
         <td className="text-center">
           <button
