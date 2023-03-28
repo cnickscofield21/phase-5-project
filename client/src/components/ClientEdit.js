@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 function ClientEdit({onUpdateClient}) {
   const [client, setClient] = useState({});
   const params = useParams();
+  const navigate = useNavigate();
   const {id} = params;
   const initValues = {
     first_name: "",
@@ -12,25 +13,19 @@ function ClientEdit({onUpdateClient}) {
     age: "",
     ethnicity: "",
     gender: "",
-    hair_color: "",
-    eye_color: "",
-    height: "",
-    weight: "",
     doc_number: "",
     est_parole_eligibility_date: "",
     next_parole_hearing_date: "",
     est_mandatory_release_date: "",
     est_sentence_discharge_date: "",
-    image: "",
-    facility_id: "",
-    organization_id: ""
+    facility: "",
+    organization: ""
   };
   const [formData, setFormData] = useState(initValues);
   const {first_name, last_name, middle_initial, age, ethnicity, gender,
-          hair_color, eye_color, height, weight, doc_number,
-          est_parole_eligibility_date, next_parole_hearing_date,
-          est_mandatory_release_date, est_sentence_discharge_date, image,
-          facility_id, organization_id
+          doc_number, est_parole_eligibility_date, next_parole_hearing_date,
+          est_mandatory_release_date, est_sentence_discharge_date,
+          facility, organization
         } = formData;
 
   useState(() => {
@@ -39,12 +34,15 @@ function ClientEdit({onUpdateClient}) {
       if (r.ok) {
         r.json().then(client => {
           setClient(client);
+          setFormData(client);
         })
       } else {
 
       }
     })
   }, []);
+
+  console.log(client);
 
   const handleChange = (e) => {
     const {name, value} = e.target;
@@ -54,7 +52,25 @@ function ClientEdit({onUpdateClient}) {
   const handleSubmit = (e) => {
     e.preventDefault();
     // onAddClient(formData); // FIXME: Need to build & connect this functionality
+    const configObj = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(formData)
+    };
 
+    // TODO: Finish error handling
+    fetch(`/clients/${id}`, configObj)
+    .then(r => {
+      if (r.ok) {
+        r.json().then()
+        // onUpdateClient(updatedClient)
+      } else {
+        // error handling
+      }
+    })
   }
 
   return(
@@ -65,7 +81,7 @@ function ClientEdit({onUpdateClient}) {
           {/* <!-- Page content here --> */}
           <h1 className="text-2xl font-bold justify-center">Edit Client</h1>
           <div className="min-w-max">
-          <form>
+          <form onSubmit={handleSubmit}>
           <div className="space-y-12">
 
               <div className="border-b pb-12">
@@ -80,7 +96,6 @@ function ClientEdit({onUpdateClient}) {
                         type="text"
                         name="first_name"
                         id="first-name"
-                        placeholder="Ex: Bob"
                         className="input input-bordered w-full max-w-xs"
                         onChange={handleChange}
                         value={first_name}
@@ -96,7 +111,6 @@ function ClientEdit({onUpdateClient}) {
                         type="text"
                         name="middle_initial"
                         id="middle-name"
-                        placeholder="Ex: J"
                         className="input input-bordered w-full max-w-xs"
                         onChange={handleChange}
                         value={middle_initial}
@@ -113,7 +127,6 @@ function ClientEdit({onUpdateClient}) {
                         type="text"
                         name="last_name"
                         id="last-name"
-                        placeholder="Ex: Smith"
                         className="input input-bordered w-full max-w-xs"
                         onChange={handleChange}
                         value={last_name}
@@ -130,7 +143,6 @@ function ClientEdit({onUpdateClient}) {
                         type="number"
                         name="doc_number"
                         id="doc-number"
-                        placeholder="Ex: 123456"
                         className="input input-bordered w-full max-w-xs"
                         onChange={handleChange}
                         value={doc_number}
@@ -147,7 +159,6 @@ function ClientEdit({onUpdateClient}) {
                         type="number"
                         name="age"
                         id="age"
-                        placeholder="Ex: 44"
                         max={110}
                         min={14}
                         className="input input-bordered w-full max-w-xs"
@@ -167,9 +178,8 @@ function ClientEdit({onUpdateClient}) {
                         id="gender"
                         className="select select-bordered w-full"
                         onChange={handleChange}
-                        defaultValue={gender}
+                        value={gender}
                       >
-                        <option disabled value="DEFAULT">Select Gender</option>
                         <option value={"Male"}>Male</option>
                         <option value={"Female"}>Female</option>
                       </select>
@@ -186,9 +196,8 @@ function ClientEdit({onUpdateClient}) {
                         id="ethnicity"
                         className="select select-bordered w-full"
                         onChange={handleChange}
-                        defaultValue={ethnicity}
+                        value={ethnicity}
                       >
-                        <option disabled value="DEFAULT">Select Ethnicity</option>
                         <option value={"Am. Indian"}>Am. Indian</option>
                         <option value={"Asian"}>Asian</option>
                         <option value={"Black"}>Black</option>
@@ -212,7 +221,7 @@ function ClientEdit({onUpdateClient}) {
                         id="est-parole-eligibility-date"
                         className="input input-bordered w-full max-w-xs"
                         onChange={handleChange}
-                        value={est_parole_eligibility_date}
+                        value={est_parole_eligibility_date ? est_parole_eligibility_date : ""}
                       />
                     </div>
                   </div>
@@ -228,7 +237,7 @@ function ClientEdit({onUpdateClient}) {
                         id="next-parole-hearing-date"
                         className="input input-bordered w-full max-w-xs"
                         onChange={handleChange}
-                        value={next_parole_hearing_date}
+                        value={next_parole_hearing_date ? next_parole_hearing_date : ""}
                       />
                     </div>
                   </div>
@@ -244,7 +253,7 @@ function ClientEdit({onUpdateClient}) {
                         id="est-mandatory-release-date"
                         className="input input-bordered w-full max-w-xs"
                         onChange={handleChange}
-                        value={est_mandatory_release_date}
+                        value={est_mandatory_release_date ? est_mandatory_release_date : ""}
                       />
                     </div>
                   </div>
@@ -260,7 +269,7 @@ function ClientEdit({onUpdateClient}) {
                         id="est-sentence-discharge-date"
                         className="input input-bordered w-full max-w-xs"
                         onChange={handleChange}
-                        value={est_sentence_discharge_date}
+                        value={est_sentence_discharge_date ? est_sentence_discharge_date : ""}
                       />
                     </div>
                   </div>
@@ -274,9 +283,8 @@ function ClientEdit({onUpdateClient}) {
                       id="facility-id"
                       className="select select-bordered w-full"
                       onChange={handleChange}
-                      defaultValue={facility_id}
+                      value={facility.id}
                     >
-                      <option disabled value="DEFAULT">Select Facility</option>
                       <option value={1}>AVCF</option>
                       <option value={2}>ACC</option>
                       <option value={3}>BCCF</option>
@@ -304,7 +312,7 @@ function ClientEdit({onUpdateClient}) {
                   </div>
 
                   {/* FIXME: Likely needs to check the organization_id or the current user */}
-                  <input type="hidden" id="organization-id" name="organization-id" value={organization_id}></input>
+                  <input type="hidden" id="organization-id" name="organization-id" value={organization.id}></input>
 
                 </div>
               </div>

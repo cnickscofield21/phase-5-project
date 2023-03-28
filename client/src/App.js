@@ -49,22 +49,6 @@ function App() {
     // FIXME: Finish logic
   })
 
-  // TODO: Enable theming
-  // const [theme, setTheme] = useState(getTheme);
-  // useEffect(() => {
-  //   document.documentElement.setAttribute('data-theme', theme);
-  // }, [theme]);
-
-  // function getTheme() {
-  //   // If theme is not set, DaisyUI will set theme based on system settings.
-  //   return (localStorage.getItem("cdmTheme")) ? localStorage.getItem("cdmTheme") : "";
-  // };
-
-  // const onChangeTheme = (newTheme) => {
-  //   localStorage.setItem("cdmTheme", newTheme);
-  //   setTheme(newTheme);
-  // }
-
   const updateUser = (user) => setUser(user);
 
   if (errors) return <h1>{errors}</h1>;
@@ -78,7 +62,6 @@ function App() {
   )
   return (
     <>
-      {/* TODO: Use when ready for theming <Header onChangeTheme={onChangeTheme} currentTheme={theme} /> */}
       <Header user={user} updateUser={updateUser} />
       <div className="container mx-auto">
         <Routes>

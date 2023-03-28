@@ -3,15 +3,8 @@ import { Link } from 'react-router-dom';
 import { FaPencilAlt, FaTrashAlt } from 'react-icons/fa';
 import SideBarBottom from "./SideBarBottom";
 
-
 function ClientIndex({clients, onDeleteClient}) {
-  console.log(clients)
   const [clientList, setClientList] = useState(clients);
-
-  function handleEditClick(e) {
-    // const id = (e.target.tagName == "path") ? e.target.parentNode.dataset.id : e.target.dataset.id;
-    // onUpdateUsers();
-  }
 
   function handleDeleteClick(e) {
     if (window.confirm("Permanently delete this record?")) {
@@ -22,6 +15,7 @@ function ClientIndex({clients, onDeleteClient}) {
       .then(() => {
         onDeleteClient(id);
       })
+
     }
   }
 
@@ -43,7 +37,6 @@ function ClientIndex({clients, onDeleteClient}) {
               className="btn btn-ghost hover:btn-info"
               type="button"
               title={`Edit ${last_name}, ${first_name}?`}
-              onClick={handleEditClick}
               data-id={id}
               >
               <FaPencilAlt data-id={id} />
