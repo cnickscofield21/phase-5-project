@@ -1,6 +1,6 @@
+import {NavLink} from "react-router-dom";
 import {FaBrain} from "react-icons/fa";
 import AvatarDropdown from "./AvatarDropdown"
-import { NavLink } from "react-router-dom";
 
 function Header({user, updateUser}) {
   const logoLink = (user) ? "/clients" : "/";

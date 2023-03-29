@@ -1,12 +1,11 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
-import { FaCheck } from 'react-icons/fa';
+import {useState, useEffect} from "react";
+import {useNavigate} from 'react-router-dom';
+import {FaCheck} from 'react-icons/fa';
 
 function ThemesList({handleClick, currentTheme}) {
-  const themes = ["acid", "aqua", "autumn", "bumblebee", "business",
-                  "corporate", "cupcake", "dark", "dracula", "emerald",
-                  "fantasy", "garden", "halloween", "lemonade", "light",
-                  "night", "pastel", "valentine", "winter"];
+  const themes = ["light", "dark", "cupcake", "bumblebee", "emerald", "corporate",
+                  "garden", "aqua", "lofi", "fantasy", "black", "dracula", "cmyk",
+                  "autumn", "business", "acid", "lemonade", "night", "winter"];
 
   const themeItems = themes.map(themeItem => {
   const selected = (themeItem === currentTheme) ? <FaCheck /> : null;
@@ -26,8 +25,8 @@ function ThemesList({handleClick, currentTheme}) {
 
   return(
     <>
-        <li><h3>Select Theme:</h3></li>
-        {themeItems}
+      <li><h3>Select Theme:</h3></li>
+      {themeItems}
     </>
   );
 }

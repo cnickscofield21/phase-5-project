@@ -1,12 +1,11 @@
-import { useState } from "react";
-import { Link } from 'react-router-dom';
-import { FaPencilAlt, FaTrashAlt } from 'react-icons/fa';
+import {Link} from 'react-router-dom';
+import {FaPencilAlt, FaTrashAlt} from 'react-icons/fa';
 import SideBarBottom from "./SideBarBottom";
 
-function ClientIndex({clients, onUpdateClient, onDeleteClient}) {
+function ClientIndex({clients, onDeleteClient, clientSort}) {
   function handleDeleteClick(e, first_name, last_name) {
     if (window.confirm(`Permanently delete record for ${first_name} ${last_name}?`)) {
-      const id = (e.target.tagName == "path") ? e.target.parentNode.dataset.id : e.target.dataset.id;
+      const id = (e.target.tagName === "path") ? e.target.parentNode.dataset.id : e.target.dataset.id;
       const configObj = {method: "DELETE"};
 
       fetch(`/clients/${id}`, configObj)
@@ -16,6 +15,13 @@ function ClientIndex({clients, onUpdateClient, onDeleteClient}) {
 
     }
 
+  }
+
+  const onSortClick = (e) => {
+    const sortBy = e.target.dataset.sortBy;
+    const desc = parseInt(e.target.dataset.sortOrder, 10);
+    clientSort(sortBy, desc);
+    e.target.dataset.sortOrder = (parseInt(e.target.dataset.sortOrder, 10) === 0) ? 1 : 0;
   }
 
   const clientRows = clients.map(client => {
@@ -37,7 +43,7 @@ function ClientIndex({clients, onUpdateClient, onDeleteClient}) {
               type="button"
               title={`Edit ${last_name}, ${first_name}?`}
               data-id={id}
-              >
+            >
               <FaPencilAlt data-id={id} />
             </button>
           </Link>
@@ -57,10 +63,6 @@ function ClientIndex({clients, onUpdateClient, onDeleteClient}) {
     );
   });
 
-  function onTest() {
-    alert("Clicked!");
-  }
-
   return (
     <div className="drawer drawer-mobile">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -68,15 +70,15 @@ function ClientIndex({clients, onUpdateClient, onDeleteClient}) {
         {/* <!-- Page content here --> */}
         <h1 className="text-2xl font-bold justify-center">Manage Clients</h1>
         <div className="min-w-max">
-          <table className="table-zebra mt-8 min-w-full">
+          <table className="table-zebra mt-12 min-w-full">
             <thead>
               <tr>
-                <th>Last Name</th>
-                <th>First Name</th>
-                <th>M.I.</th>
-                <th>DOC Number</th>
-                <th>Gender</th>
-                <th>Facility</th>
+                <th className="hover:text-success cursor-pointer" onClick={onSortClick} data-sort-order={0} data-sort-by="last_name">Last Name</th>
+                <th className="hover:text-success cursor-pointer" onClick={onSortClick} data-sort-order={0} data-sort-by="first_name">First Name</th>
+                <th className="hover:text-success cursor-pointer" onClick={onSortClick} data-sort-order={0} data-sort-by="middle_initial">M.I.</th>
+                <th className="hover:text-success cursor-pointer" onClick={onSortClick} data-sort-order={0} data-sort-by="doc_number">DOC Number</th>
+                <th className="hover:text-success cursor-pointer" onClick={onSortClick} data-sort-order={0} data-sort-by="gender">Gender</th>
+                <th className="hover:text-success cursor-pointer" onClick={onSortClick} data-sort-order={0} data-sort-by="facility">Facility</th>
                 <th>Edit</th>
                 <th>Delete</th>
               </tr>

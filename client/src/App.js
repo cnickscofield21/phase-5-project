@@ -27,7 +27,7 @@ function App() {
         setUser(null)
       }
     })
-  },[])
+  }, [])
 
   const fetchClients = () => {
     fetch(`/clients`)
@@ -40,9 +40,8 @@ function App() {
     })
   }
 
-  const onAddClient = (client) => setClients(current => [...current, client]);
+  const onAddClient = (newClient) => setClients(clients => [...clients, newClient]);
 
-  // FIXME: Finish logic
   const onUpdateClient = (updatedClient) => {
     const updatedClients = clients.map(ogClient => {
       if (ogClient.id === updatedClient.id) {
@@ -61,7 +60,35 @@ function App() {
     const updatedClients = clients.filter(client => {
       return client.id !== parseInt(deletedId, 10);
     })
+
     setClients(updatedClients);
+  }
+
+  const clientSort = (sortBy, desc = 0) => {
+    console.log('desc: ', desc);
+    const sortRoutes = {
+      last_name: function(a, b) {
+          return a.last_name.toLowerCase().localeCompare(b.last_name.toLowerCase());
+      },
+      first_name: function(a, b) {
+          return a.first_name.toLowerCase().localeCompare(b.first_name.toLowerCase());
+      },
+      facility: function(a, b) {
+          return a.facility.name.toLowerCase().localeCompare(b.facility.name.toLowerCase());
+      },
+      middle_initial: function(a, b) {
+          return a.middle_initial.toLowerCase().localeCompare(b.middle_initial.toLowerCase());
+      },
+      doc_number: function(a, b) {
+          return parseInt(a.doc_number, 10) - parseInt(b.doc_number, 10);
+      },
+      gender: function(a, b) {
+          return a.gender.toLowerCase().localeCompare(b.gender.toLowerCase());
+      }
+    }
+
+    const sortedClients = (desc) ? clients.sort(sortRoutes[sortBy]).reverse() : clients.sort(sortRoutes[sortBy]);
+    setClients([...sortedClients]);
   }
 
   const updateUser = (user) => setUser(user);
@@ -81,7 +108,7 @@ function App() {
       <div className="container mx-auto">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/clients" element={<ClientIndex clients={clients} onDeleteClient={onDeleteClient} />} />
+          <Route path="/clients" element={<ClientIndex clients={clients} onDeleteClient={onDeleteClient} clientSort={clientSort} />} />
           {/* TODO: Should I add 'edit' to this path? */}
           <Route path="/clients/edit/:id" element={<ClientEdit onUpdateClient={onUpdateClient} />} />
           <Route path="/clients/new" element={<ClientCreate onAddClient={onAddClient} />} />

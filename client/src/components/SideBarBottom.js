@@ -1,5 +1,4 @@
-import { Link } from 'react-router-dom';
-import { FaPlus } from 'react-icons/fa';
+import {Link} from 'react-router-dom';
 
 function SideBarBottom() {
   const newPath = `/clients/new`;

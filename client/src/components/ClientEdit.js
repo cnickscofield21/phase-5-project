@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import {useState} from 'react';
+import {useParams, useNavigate} from 'react-router-dom';
 
 function ClientEdit({onUpdateClient}) {
   const [client, setClient] = useState({});
+  const [changed, setChanged] = useState(false);
   const params = useParams();
   const navigate = useNavigate();
   const {id} = params;
@@ -43,6 +44,7 @@ function ClientEdit({onUpdateClient}) {
   }, []);
 
   const handleChange = (e) => {
+    if (!changed) setChanged(true);
     const {name, value} = e.target;
     setFormData((formData) => ({...formData, [name]: value}));
   }
@@ -70,6 +72,12 @@ function ClientEdit({onUpdateClient}) {
         // r.json().then(data => setErrors(Object.entries(data.errors).map(e => `${e[0]} ${e[1]}`)))
       }
     })
+  }
+
+  const onCancelClick = () => {
+    if (changed && window.confirm(`Disgard changes?`)) {
+      navigate(-1);
+    }
   }
 
   return(
@@ -111,6 +119,7 @@ function ClientEdit({onUpdateClient}) {
                         name="middle_initial"
                         id="middle-name"
                         className="input input-bordered w-full max-w-xs"
+                        maxlength={1}
                         onChange={handleChange}
                         value={middle_initial}
                       />
@@ -322,7 +331,7 @@ function ClientEdit({onUpdateClient}) {
             </div>
 
             <div className="mt-6 flex items-center justify-center gap-x-6">
-              <button type="button" className="text-sm font-semibold leading-6">
+              <button onClick={onCancelClick} type="button" className="text-sm font-semibold leading-6">
                 Cancel
               </button>
               <button
