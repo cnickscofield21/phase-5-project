@@ -40,7 +40,10 @@ function App() {
     })
   }
 
-  const onAddClient = (newClient) => setClients(clients => [...clients, newClient]);
+  const onAddClient = (newClient) => {
+    setClients(clients => [...clients, newClient]);
+    navigate(`/clients`);
+  };
 
   const onUpdateClient = (updatedClient) => {
     const updatedClients = clients.map(ogClient => {

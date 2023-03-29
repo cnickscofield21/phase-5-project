@@ -1,7 +1,9 @@
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
+import ErrorAlert from './ErrorAlert';
 
 function ClientCreate({onAddClient}) {
+  const [changed, setChanged] = useState(false);
   const [errors, setErrors] = useState([]);
   const navigate = useNavigate();
   const initValues = {
@@ -17,7 +19,7 @@ function ClientCreate({onAddClient}) {
     est_mandatory_release_date: "",
     est_sentence_discharge_date: "",
     facility: "",
-    organization: ""
+    organization: 1
   };
   const [formData, setFormData] = useState(initValues);
   const {first_name, last_name, middle_initial, age, ethnicity, gender,
@@ -25,6 +27,13 @@ function ClientCreate({onAddClient}) {
           est_mandatory_release_date, est_sentence_discharge_date,
           facility, organization
         } = formData;
+
+
+  const handleChange = (e) => {
+    if (!changed) setChanged(true);
+    const {name, value} = e.target;
+    setFormData((formData) => ({...formData, [name]: value}));
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -37,17 +46,23 @@ function ClientCreate({onAddClient}) {
       body: JSON.stringify(formData)
     };
 
-    // TODO: Finish error handling
     fetch(`/clients`, configObj)
     .then(r => {
       if (r.ok) {
         r.json().then(newClient => onAddClient(newClient))
-        // navigate(`/clients`)
       } else {
-        // error handling
-        // r.json().then(data => setErrors(Object.entries(data.errors).map(e => `${e[0]} ${e[1]}`)))
+        r.json().then(data => setErrors(Object.entries(data.errors).map(e => `${e[0]} ${e[1]}`)))
       }
     })
+  }
+
+
+  const onCancelClick = () => {
+    if (changed && window.confirm(`Disgard new entry?`)) {
+      navigate(-1);
+    } else {
+      navigate(-1);
+    }
   }
 
   return(
@@ -64,20 +79,37 @@ function ClientCreate({onAddClient}) {
               <div className="border-b pb-12">
 
                 <div className="mt-4 grid grid-cols-1 gap-y-8 gap-x-6 sm:grid-cols-6">
+
                   <div className="sm:col-span-1">
                     <div className="form-control">
                       <label className="label" htmlFor="first-name">
                         <span className="label-text">First Name:</span>
                       </label>
-                      <input type="text" name="first_name" id="first-name" placeholder="Ex: Alex" className="input input-bordered w-full max-w-xs" />
+                      <input
+                        type="text"
+                        name="first_name"
+                        id="first-name"
+                        placeholder="Ex: Alex"
+                        className="input input-bordered w-full max-w-xs"
+                        onChange={handleChange}
+                      />
                     </div>
                   </div>
+
                   <div className="sm:col-span-1">
                     <div className="form-control">
                       <label className="label" htmlFor="middle-name">
                         <span className="label-text">MI:</span>
                       </label>
-                      <input type="text" name="middle_initial" id="middle-name" placeholder="Ex: J" className="input input-bordered w-full max-w-xs" maxlength={1} />
+                      <input
+                        type="text"
+                        name="middle_initial"
+                        id="middle-name"
+                        placeholder="Ex: J"
+                        className="input input-bordered w-full max-w-xs"
+                        maxLength={1}
+                        onChange={handleChange}
+                      />
                     </div>
                   </div>
 
@@ -86,7 +118,14 @@ function ClientCreate({onAddClient}) {
                       <label className="label" htmlFor="last-name">
                         <span className="label-text">Last Name:</span>
                       </label>
-                      <input type="text" name="last_name" id="last-name" placeholder="Ex: Smith" className="input input-bordered w-full max-w-xs" />
+                      <input
+                        type="text"
+                        name="last_name"
+                        id="last-name"
+                        placeholder="Ex: Smith"
+                        className="input input-bordered w-full max-w-xs"
+                        onChange={handleChange}
+                      />
                     </div>
                   </div>
 
@@ -95,7 +134,14 @@ function ClientCreate({onAddClient}) {
                       <label className="label" htmlFor="doc-number">
                         <span className="label-text">DOC Number:</span>
                       </label>
-                      <input type="number" name="doc_number" id="doc-number" placeholder="Ex: 123456" className="input input-bordered w-full max-w-xs" />
+                      <input
+                        type="number"
+                        name="doc_number"
+                        id="doc-number"
+                        placeholder="Ex: 123456"
+                        className="input input-bordered w-full max-w-xs"
+                        onChange={handleChange}
+                      />
                     </div>
                   </div>
 
@@ -104,7 +150,16 @@ function ClientCreate({onAddClient}) {
                       <label className="label" htmlFor="age">
                         <span className="label-text">Age:</span>
                       </label>
-                      <input type="number" name="age" id="age" placeholder="Ex: 44" max={110} min={14} className="input input-bordered w-full max-w-xs" />
+                      <input
+                        type="number"
+                        name="age"
+                        id="age"
+                        placeholder="Ex: 44"
+                        max={110}
+                        min={14}
+                        className="input input-bordered w-full max-w-xs"
+                        onChange={handleChange}
+                      />
                     </div>
                   </div>
 
@@ -113,7 +168,13 @@ function ClientCreate({onAddClient}) {
                       <label className="label" htmlFor="gender">
                         <span className="label-text">Gender:</span>
                       </label>
-                      <select name="gender" id="gender" className="select select-bordered w-full" defaultValue={'DEFAULT'} >
+                      <select
+                        name="gender"
+                        id="gender"
+                        className="select select-bordered w-full"
+                        onChange={handleChange}
+                        defaultValue={'DEFAULT'}
+                      >
                         <option disabled value="DEFAULT">Select Gender</option>
                         <option value={"Male"}>Male</option>
                         <option value={"Female"}>Female</option>
@@ -126,7 +187,13 @@ function ClientCreate({onAddClient}) {
                       <label className="label" htmlFor="ethnicity">
                         <span className="label-text">Ethnicity:</span>
                       </label>
-                      <select name="ethnicity" id="ethnicity" className="select select-bordered w-full" defaultValue={'DEFAULT'} >
+                      <select
+                        name="ethnicity"
+                        id="ethnicity"
+                        className="select select-bordered w-full"
+                        onChange={handleChange}
+                        defaultValue={'DEFAULT'}
+                      >
                         <option disabled value="DEFAULT">Select Ethnicity</option>
                         <option value={"Am. Indian"}>Am. Indian</option>
                         <option value={"Asian"}>Asian</option>
@@ -145,7 +212,13 @@ function ClientCreate({onAddClient}) {
                       <label className="label" htmlFor="est-parole-eligibility-date">
                         <span className="label-text">Est. Parole Eligibility Date:</span>
                       </label>
-                      <input type="date" name="est_parole_eligibility_date" id="est-parole-eligibility-date" className="input input-bordered w-full max-w-xs" />
+                      <input
+                        type="date"
+                        name="est_parole_eligibility_date"
+                        id="est-parole-eligibility-date"
+                        className="input input-bordered w-full max-w-xs"
+                        onChange={handleChange}
+                      />
                     </div>
                   </div>
 
@@ -154,7 +227,13 @@ function ClientCreate({onAddClient}) {
                       <label className="label" htmlFor="next-parole-hearing-date">
                         <span className="label-text">Next Parole Hearing Date:</span>
                       </label>
-                      <input type="date" name="next_parole_hearing_date" id="next-parole-hearing-date" className="input input-bordered w-full max-w-xs" />
+                      <input
+                        type="date"
+                        name="next_parole_hearing_date"
+                        id="next-parole-hearing-date"
+                        className="input input-bordered w-full max-w-xs"
+                        onChange={handleChange}
+                      />
                     </div>
                   </div>
 
@@ -163,7 +242,13 @@ function ClientCreate({onAddClient}) {
                       <label className="label" htmlFor="est-mandatory-release-date">
                         <span className="label-text">Est. Mandatory Release Date:</span>
                       </label>
-                      <input type="date" name="est_mandatory_release_date" id="est-mandatory-release-date" className="input input-bordered w-full max-w-xs" />
+                      <input
+                        type="date"
+                        name="est_mandatory_release_date"
+                        id="est-mandatory-release-date"
+                        className="input input-bordered w-full max-w-xs"
+                        onChange={handleChange}
+                      />
                     </div>
                   </div>
 
@@ -172,7 +257,13 @@ function ClientCreate({onAddClient}) {
                       <label className="label" htmlFor="est-sentence-discharge-date">
                         <span className="label-text">Est. Sentence Discharge Date:</span>
                       </label>
-                      <input type="date" name="est_sentence_discharge_date" id="est-sentence-discharge-date" className="input input-bordered w-full max-w-xs" />
+                      <input
+                        type="date"
+                        name="est_sentence_discharge_date"
+                        id="est-sentence-discharge-date"
+                        className="input input-bordered w-full max-w-xs"
+                        onChange={handleChange}
+                      />
                     </div>
                   </div>
 
@@ -180,7 +271,13 @@ function ClientCreate({onAddClient}) {
                     <label className="label" htmlFor="facility-id">
                       <span className="label-text">Facility:</span>
                     </label>
-                    <select name="facility_id" id="facility-id" className="select select-bordered w-full" defaultValue={'DEFAULT'} >
+                    <select
+                      name="facility_id"
+                      id="facility-id"
+                      className="select select-bordered w-full"
+                      defaultValue={'DEFAULT'}
+                      onChange={handleChange}
+                    >
                       <option disabled value="DEFAULT">Select Facility</option>
                       <option value={1}>AVCF</option>
                       <option value={2}>ACC</option>
@@ -209,14 +306,39 @@ function ClientCreate({onAddClient}) {
                   </div>
 
                   {/* FIXME: Likely needs to check the organization_id or the current user */}
-                  <input type="hidden" id="organization-id" name="organization-id" value="1"></input>
+                  <div className="form-control w-full max-w-xs">
+                    <label className="label" htmlFor="organization-id">
+                      <span className="label-text">Organization:</span>
+                    </label>
+                    <select
+                      name="organization_id"
+                      id="organization-id"
+                      className="select select-bordered w-full"
+                      defaultValue={'DEFAULT'}
+                      onChange={handleChange}
+                    >
+                      <option disabled value="DEFAULT">Select Organization</option>
+                      <option value={1}>Breakthrough</option>
+                      <option value={2}>Remerg</option>
+                      <option value={3}>The Realness Project</option>
+                      <option value={4}>Second Chance Center</option>
+                    </select>
+                  </div>
+
+                  {/* <input
+                    type="hidden"
+                    id="organization_id"
+                    name="organization_id"
+                    onChange={handleChange}
+                    value={1}
+                  ></input> */}
 
                 </div>
               </div>
             </div>
-
+            {errors && errors.length > 0 ? <ErrorAlert errors={errors} /> : null}
             <div className="mt-6 flex items-center justify-center gap-x-6">
-              <button type="button" className="text-sm font-semibold leading-6">
+              <button onClick={onCancelClick} type="button" className="text-sm font-semibold leading-6">
                 Cancel
               </button>
               <button

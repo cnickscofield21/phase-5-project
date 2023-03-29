@@ -81,8 +81,6 @@ function ClientEdit({onUpdateClient}) {
     }
   }
 
-  // Error Display
-
   return(
     <>
       <div className="drawer drawer-mobile">
@@ -97,6 +95,7 @@ function ClientEdit({onUpdateClient}) {
               <div className="border-b pb-12">
 
                 <div className="mt-4 grid grid-cols-1 gap-y-8 gap-x-6 sm:grid-cols-6">
+
                   <div className="sm:col-span-1">
                     <div className="form-control">
                       <label className="label" htmlFor="first-name">
@@ -112,6 +111,7 @@ function ClientEdit({onUpdateClient}) {
                       />
                     </div>
                   </div>
+
                   <div className="sm:col-span-1">
                     <div className="form-control">
                       <label className="label" htmlFor="middle-name">
