@@ -1,6 +1,8 @@
 import {useState, useEffect} from 'react';
+import {useNavigate} from 'react-router-dom';
 
 function ClientCreate({onAddClient}) {
+  const [errors, setErrors] = useState([]);
   const navigate = useNavigate();
   const initValues = {
     first_name: "",
@@ -24,6 +26,30 @@ function ClientCreate({onAddClient}) {
           facility, organization
         } = formData;
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const configObj = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(formData)
+    };
+
+    // TODO: Finish error handling
+    fetch(`/clients`, configObj)
+    .then(r => {
+      if (r.ok) {
+        r.json().then(newClient => onAddClient(newClient))
+        // navigate(`/clients`)
+      } else {
+        // error handling
+        // r.json().then(data => setErrors(Object.entries(data.errors).map(e => `${e[0]} ${e[1]}`)))
+      }
+    })
+  }
+
   return(
     <>
       <div className="drawer drawer-mobile">
@@ -32,7 +58,7 @@ function ClientCreate({onAddClient}) {
           {/* <!-- Page content here --> */}
           <h1 className="text-2xl font-bold justify-center">Create Client</h1>
           <div className="min-w-max">
-          <form>
+          <form onSubmit={handleSubmit}>
           <div className="space-y-12">
 
               <div className="border-b pb-12">

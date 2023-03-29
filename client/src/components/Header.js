@@ -5,7 +5,7 @@ import AvatarDropdown from "./AvatarDropdown"
 function Header({user, updateUser}) {
   const logoLink = (user) ? "/clients" : "/";
   return(
-    <div className="navbar bg-primary text-primary-content">
+    <div className="navbar bg-primary">
       <div className="flex-1">
         <NavLink
           to={logoLink}

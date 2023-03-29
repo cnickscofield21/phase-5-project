@@ -51,7 +51,6 @@ function ClientEdit({onUpdateClient}) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // onAddClient(formData); // FIXME: Need to build & connect this functionality
     const configObj = {
       method: "PUT",
       headers: {
