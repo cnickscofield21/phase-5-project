@@ -1,5 +1,4 @@
-
-function LoginError({errors}) {
+function ErrorAlert({errors}) {
   return(
     <div className="alert alert-error shadow-lg mt-8">
       <div>
@@ -11,4 +10,4 @@ function LoginError({errors}) {
 }
 
 
-export default LoginError;
+export default ErrorAlert;

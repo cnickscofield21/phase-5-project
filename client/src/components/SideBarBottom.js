@@ -82,8 +82,8 @@ function SideBarBottom() {
             <li>
               <div className="form-control w-full max-w-xs">
                 <div className="btn-group btn-group-vertical lg:btn-group-horizontal">
-                  <button className="btn btn-active">Search</button>
-                  <button className="btn">Reset</button>
+                  <button type="submit" className="btn btn-active">Search</button>
+                  <button type="reset" className="btn">Reset</button>
                 </div>
               </div>
             </li>

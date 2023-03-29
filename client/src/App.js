@@ -65,7 +65,6 @@ function App() {
   }
 
   const clientSort = (sortBy, desc = 0) => {
-    console.log('desc: ', desc);
     const sortRoutes = {
       last_name: function(a, b) {
           return a.last_name.toLowerCase().localeCompare(b.last_name.toLowerCase());

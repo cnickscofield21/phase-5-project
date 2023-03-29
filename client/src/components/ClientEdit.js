@@ -1,9 +1,11 @@
 import {useState} from 'react';
 import {useParams, useNavigate} from 'react-router-dom';
+import ErrorAlert from './ErrorAlert';
 
 function ClientEdit({onUpdateClient}) {
   const [client, setClient] = useState({});
   const [changed, setChanged] = useState(false);
+  const [errors, setErrors] = useState([]);
   const params = useParams();
   const navigate = useNavigate();
   const {id} = params;
@@ -38,7 +40,7 @@ function ClientEdit({onUpdateClient}) {
           setFormData(client);
         })
       } else {
-
+        r.json().then(json => setErrors(json.errors));
       }
     })
   }, []);
@@ -65,10 +67,8 @@ function ClientEdit({onUpdateClient}) {
     .then(r => {
       if (r.ok) {
         r.json().then(updatedClient => onUpdateClient(updatedClient))
-        // navigate(`/clients`)
       } else {
-        // error handling
-        // r.json().then(data => setErrors(Object.entries(data.errors).map(e => `${e[0]} ${e[1]}`)))
+        r.json().then(data => setErrors(Object.entries(data.errors).map(e => `${e[0]} ${e[1]}`)))
       }
     })
   }
@@ -76,8 +76,12 @@ function ClientEdit({onUpdateClient}) {
   const onCancelClick = () => {
     if (changed && window.confirm(`Disgard changes?`)) {
       navigate(-1);
+    } else {
+      navigate(-1);
     }
   }
+
+  // Error Display
 
   return(
     <>
@@ -118,7 +122,7 @@ function ClientEdit({onUpdateClient}) {
                         name="middle_initial"
                         id="middle-name"
                         className="input input-bordered w-full max-w-xs"
-                        maxlength={1}
+                        maxLength={1}
                         onChange={handleChange}
                         value={middle_initial}
                       />
@@ -328,7 +332,7 @@ function ClientEdit({onUpdateClient}) {
                 </div>
               </div>
             </div>
-
+            {errors && errors.length > 0 ? <ErrorAlert errors={errors} /> : null}
             <div className="mt-6 flex items-center justify-center gap-x-6">
               <button onClick={onCancelClick} type="button" className="text-sm font-semibold leading-6">
                 Cancel

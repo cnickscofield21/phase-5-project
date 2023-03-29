@@ -182,6 +182,7 @@ Sentence.create(sentence_date: "02/09/2016", sentence: "6Y-6Y", county: "JEFFERS
 puts "Turn... Complete."
 
 puts "Creating Users..."
+User.create(first_name: "Nick", last_name: "Scofield", email: "c.nick.scofield@gmail.com", password: "123$%^qwe", organization_admin: true, organization_id: o0.id)
 User.create(first_name: "Bill", last_name: "Lennon", email: "milehighhokie@yahoo.com", password: "123$%^qwe", organization_admin: true, organization_id: o0.id)
 User.create(first_name: "Carol", last_name: "Peeples", email: "carol@remerg.com", password: "123$%^qwe", organization_admin: true, organization_id: o1.id)
 User.create(first_name: "Ronald", last_name: "Pierce", email: "ronnie@remerg.com", password: "123$%^qwe", organization_admin: false, organization_id: o1.id)
