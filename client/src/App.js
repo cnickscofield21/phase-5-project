@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { Link, Route, Routes } from "react-router-dom";
+import {useState, useEffect} from "react";
+import {Route, Routes, useNavigate} from "react-router-dom";
 import Home from "./components/Home";
 import Header from "./components/Header";
 import ClientIndex from "./components/ClientIndex";
@@ -13,6 +13,7 @@ function App() {
   const [user, setUser] = useState(null);
   const [errors, setErrors] = useState(false);
   const [clients, setClients] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch('/authorized')
@@ -41,13 +42,27 @@ function App() {
 
   const onAddClient = (client) => setClients(current => [...current, client]);
 
-  const onUpdateClient = (updatedClient) => setClients(current => {
-    // FIXME: Finish logic
-  })
+  // FIXME: Finish logic
+  const onUpdateClient = (updatedClient) => {
+    const updatedClients = clients.map(ogClient => {
+      if (ogClient.id === updatedClient.id) {
+        return updatedClient;
+      } else {
+        return ogClient;
+      }
 
-  const onDeleteClient = () => setClients(current => {
-    // FIXME: Finish logic
-  })
+    })
+
+    setClients(updatedClients);
+    navigate(`/clients`);
+  }
+
+  const onDeleteClient = (deletedId) => {
+    const updatedClients = clients.filter(client => {
+      return client.id !== parseInt(deletedId, 10);
+    })
+    setClients(updatedClients);
+  }
 
   const updateUser = (user) => setUser(user);
 
@@ -66,9 +81,9 @@ function App() {
       <div className="container mx-auto">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/clients" element={<ClientIndex clients={clients} />} />
+          <Route path="/clients" element={<ClientIndex clients={clients} onDeleteClient={onDeleteClient} />} />
           {/* TODO: Should I add 'edit' to this path? */}
-          <Route path="/clients/:id" element={<ClientEdit onUpdateClient={onUpdateClient} />} />
+          <Route path="/clients/edit/:id" element={<ClientEdit onUpdateClient={onUpdateClient} />} />
           <Route path="/clients/new" element={<ClientCreate onAddClient={onAddClient} />} />
 
         </Routes>

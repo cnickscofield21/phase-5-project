@@ -3,7 +3,7 @@ class ClientsController < ApplicationController
 
   # GET /clients
   def index
-    @clients = Client.all
+    @clients = Client.all.sort_by {|client| client.last_name}
     render json: @clients, status: :ok
   end
 

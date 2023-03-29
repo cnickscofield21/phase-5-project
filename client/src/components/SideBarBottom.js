@@ -1,4 +1,9 @@
+import { Link } from 'react-router-dom';
+import { FaPlus } from 'react-icons/fa';
+
 function SideBarBottom() {
+  const newPath = `/clients/new`;
+
   const onSubmit = (e) => {
     e.preventDefault();
   }
@@ -9,6 +14,20 @@ function SideBarBottom() {
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
         <form onSubmit={onSubmit}>
           <ul className="menu p-4 w-80 bg-base-100 text-base-content">
+
+            <li>
+              <div className="form-control w-full max-w-xs">
+                <Link to={newPath}>
+                  <button
+                    className="btn btn-success"
+                    type="button"
+                    title={`Add New Client`}
+                  >
+                    Add New Client
+                  </button>
+                </Link>
+              </div>
+            </li>
 
             <li>
               <div className="form-control w-full max-w-xs">
@@ -34,7 +53,6 @@ function SideBarBottom() {
                   <span className="label-text">Facility:</span>
                 </label>
                 <select name="facility" id="search-facility" className="select select-bordered w-full" defaultValue={'DEFAULT'} >
-                  {/* TODO: Render list dynamically */}
                   <option disabled value="DEFAULT">Select Facility</option>
                   <option value={1}>AVCF</option>
                   <option value={2}>ACC</option>

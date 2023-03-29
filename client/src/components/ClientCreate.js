@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react'
+import {useState, useEffect} from 'react';
 
 function ClientCreate({onAddClient}) {
   return(
@@ -7,7 +7,7 @@ function ClientCreate({onAddClient}) {
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col mt-8">
           {/* <!-- Page content here --> */}
-          <h1 className="text-2xl font-bold justify-center">Edit Client</h1>
+          <h1 className="text-2xl font-bold justify-center">Create Client</h1>
           <div className="min-w-max">
           <form>
           <div className="space-y-12">
@@ -20,7 +20,7 @@ function ClientCreate({onAddClient}) {
                       <label className="label" htmlFor="first-name">
                         <span className="label-text">First Name:</span>
                       </label>
-                      <input type="text" name="first_name" id="first-name" placeholder="Ex: Bob" className="input input-bordered w-full max-w-xs" />
+                      <input type="text" name="first_name" id="first-name" placeholder="Ex: Alex" className="input input-bordered w-full max-w-xs" />
                     </div>
                   </div>
                   <div className="sm:col-span-1">

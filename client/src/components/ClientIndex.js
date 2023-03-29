@@ -3,11 +3,9 @@ import { Link } from 'react-router-dom';
 import { FaPencilAlt, FaTrashAlt } from 'react-icons/fa';
 import SideBarBottom from "./SideBarBottom";
 
-function ClientIndex({clients, onDeleteClient}) {
-  const [clientList, setClientList] = useState(clients);
-
-  function handleDeleteClick(e) {
-    if (window.confirm("Permanently delete this record?")) {
+function ClientIndex({clients, onUpdateClient, onDeleteClient}) {
+  function handleDeleteClick(e, first_name, last_name) {
+    if (window.confirm(`Permanently delete record for ${first_name} ${last_name}?`)) {
       const id = (e.target.tagName == "path") ? e.target.parentNode.dataset.id : e.target.dataset.id;
       const configObj = {method: "DELETE"};
 
@@ -17,11 +15,12 @@ function ClientIndex({clients, onDeleteClient}) {
       })
 
     }
+
   }
 
   const clientRows = clients.map(client => {
     const {id, last_name, first_name, middle_initial, doc_number, gender, facility} = client;
-    const editPath = `/clients/${id}`;
+    const editPath = `/clients/edit/${id}`;
 
     return (
       <tr key={id}>
@@ -48,7 +47,7 @@ function ClientIndex({clients, onDeleteClient}) {
             className="btn btn-ghost hover:btn-error"
             type="button"
             title={`Delete ${last_name}, ${first_name}?`}
-            onClick={handleDeleteClick}
+            onClick={(e) => handleDeleteClick(e, first_name, last_name)}
             data-id={id}
           >
             <FaTrashAlt data-id={id} />

@@ -42,8 +42,6 @@ function ClientEdit({onUpdateClient}) {
     })
   }, []);
 
-  console.log(client);
-
   const handleChange = (e) => {
     const {name, value} = e.target;
     setFormData((formData) => ({...formData, [name]: value}));
@@ -65,10 +63,11 @@ function ClientEdit({onUpdateClient}) {
     fetch(`/clients/${id}`, configObj)
     .then(r => {
       if (r.ok) {
-        r.json().then()
-        // onUpdateClient(updatedClient)
+        r.json().then(updatedClient => onUpdateClient(updatedClient))
+        // navigate(`/clients`)
       } else {
         // error handling
+        // r.json().then(data => setErrors(Object.entries(data.errors).map(e => `${e[0]} ${e[1]}`)))
       }
     })
   }
@@ -311,8 +310,12 @@ function ClientEdit({onUpdateClient}) {
                     </select>
                   </div>
 
-                  {/* FIXME: Likely needs to check the organization_id or the current user */}
-                  <input type="hidden" id="organization-id" name="organization-id" value={organization.id}></input>
+                  <input
+                    type="hidden"
+                    id="organization-id"
+                    name="organization-id"
+                    value={organization.id ? organization.id : ""}>
+                  </input>
 
                 </div>
               </div>

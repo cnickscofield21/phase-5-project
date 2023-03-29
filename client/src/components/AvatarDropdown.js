@@ -4,10 +4,9 @@ import { FaCheck } from 'react-icons/fa';
 
 function ThemesList({handleClick, currentTheme}) {
   const themes = ["acid", "aqua", "autumn", "bumblebee", "business",
-                  "corporate", "cupcake", "dark", "dracula",
-                  "emerald", "fantasy", "garden", "halloween",
-                  "lemonade", "light", "night", "pastel",
-                  "synthwave", "valentine", "winter"];
+                  "corporate", "cupcake", "dark", "dracula", "emerald",
+                  "fantasy", "garden", "halloween", "lemonade", "light",
+                  "night", "pastel", "valentine", "winter"];
 
   const themeItems = themes.map(themeItem => {
   const selected = (themeItem === currentTheme) ? <FaCheck /> : null;
@@ -91,8 +90,8 @@ function AvatarDropdown({user, updateUser}) {
   if (user) {
     return (
       <div className="dropdown dropdown-end">
-        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-          <div className={`w-10 rounded-full bg-${avatarColors[initial]} text-content`}>
+        <label tabIndex={0} className={`btn btn-${avatarColors[initial]} btn-circle avatar`}>
+          <div className={`w-10 rounded-full text-content`}>
             <div className="pt-3">{initial}</div>
           </div>
         </label>
