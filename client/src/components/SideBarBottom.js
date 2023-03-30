@@ -36,10 +36,16 @@ function SideBarBottom({onHandleChange, onHandleReset}) {
                   type="text"
                   name="search_multiple"
                   id="search-multiple"
-                  placeholder="Ex: Name, DOC #, Gender or Facility"
+                  placeholder="Ex: 'Bob', 'Female', 'ACVF', etc."
                   className="input input-bordered w-full max-w-xs"
                   onChange={onHandleChange}
                 />
+                <label className="label">
+                  <span className="label-text-alt">
+                    Search by: First or Last name, DOC Number, Gender, or
+                    Facility acronymn
+                  </span>
+                </label>
               </div>
             </li>
 
