@@ -13,6 +13,7 @@ function App() {
   const [user, setUser] = useState(null);
   const [errors, setErrors] = useState(false);
   const [clients, setClients] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -93,6 +94,20 @@ function App() {
     setClients([...sortedClients]);
   }
 
+  const searchResults = clients.filter((client) => {
+    return client.first_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            client.last_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            client.doc_number.toString().includes(searchQuery) ||
+            client.facility.acronymn.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            client.gender.includes(searchQuery);
+  });
+
+  const onHandleChange = (e) => setSearchQuery(e.target.value);
+
+  const onHandleReset = () => {
+    setSearchQuery("");
+  }
+
   const updateUser = (user) => setUser(user);
 
   if (errors) return <h1>{errors}</h1>;
@@ -110,7 +125,15 @@ function App() {
       <div className="container mx-auto">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/clients" element={<ClientIndex clients={clients} onDeleteClient={onDeleteClient} clientSort={clientSort} />} />
+          <Route path="/clients" element={
+            <ClientIndex
+              searchResults={searchResults}
+              onDeleteClient={onDeleteClient}
+              clientSort={clientSort}
+              onHandleChange={onHandleChange}
+              onHandleReset={onHandleReset}
+            />}
+          />
           {/* TODO: Should I add 'edit' to this path? */}
           <Route path="/clients/edit/:id" element={<ClientEdit onUpdateClient={onUpdateClient} />} />
           <Route path="/clients/new" element={<ClientCreate onAddClient={onAddClient} />} />

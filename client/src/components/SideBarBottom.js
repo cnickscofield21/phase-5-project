@@ -1,24 +1,20 @@
 import {Link} from 'react-router-dom';
 
-function SideBarBottom() {
+function SideBarBottom({onHandleChange, onHandleReset}) {
   const newPath = `/clients/new`;
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-  }
 
   return (
     <>
       <div className="drawer-side">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-        <form onSubmit={onSubmit}>
-          <ul className="menu p-4 w-80 bg-base-100 text-base-content">
+        <form onReset={onHandleReset}>
+          <ul className="menu p-4 w-80 bg-base-100 text-base-content pt-12">
 
             <li>
               <div className="form-control w-full max-w-xs">
                 <Link to={newPath}>
                   <button
-                    className="btn btn-success"
+                    className="btn btn-success w-64 mt-12"
                     type="button"
                     title={`Add New Client`}
                   >
@@ -29,11 +25,37 @@ function SideBarBottom() {
             </li>
 
             <li>
+              <div
+                className="form-control w-full max-w-xs"
+                title=""
+              >
+                <label className="label" htmlFor="search-multiple">
+                  <span className="label-text">Search:</span>
+                </label>
+                <input
+                  type="text"
+                  name="search_multiple"
+                  id="search-multiple"
+                  placeholder="Ex: Name, DOC #, Gender or Facility"
+                  className="input input-bordered w-full max-w-xs"
+                  onChange={onHandleChange}
+                />
+              </div>
+            </li>
+
+            {/* <li>
               <div className="form-control w-full max-w-xs">
                 <label className="label" htmlFor="search-doc-number">
                   <span className="label-text">DOC Number:</span>
                 </label>
-                <input type="text" name="doc_number" id="search-doc-number" placeholder="Ex: 123456" className="input input-bordered w-full max-w-xs" />
+                <input
+                  type="text"
+                  name="doc_number"
+                  id="search-doc-number"
+                  placeholder="Ex: 123456"
+                  className="input input-bordered w-full max-w-xs"
+                  onChange={onHandleChange}
+                />
               </div>
             </li>
 
@@ -42,7 +64,14 @@ function SideBarBottom() {
                 <label className="label" htmlFor="search-name">
                   <span className="label-text">Name:</span>
                 </label>
-                <input type="text" name="name" id="search-name" placeholder="Ex: Bob Smith" className="input input-bordered w-full max-w-xs" />
+                <input
+                  type="text"
+                  name="name"
+                  id="search-name"
+                  placeholder="Ex: Bob Smith"
+                  className="input input-bordered w-full max-w-xs"
+                  onChange={onHandleChange}
+                />
               </div>
             </li>
 
@@ -51,7 +80,13 @@ function SideBarBottom() {
                 <label className="label" htmlFor="search-facility">
                   <span className="label-text">Facility:</span>
                 </label>
-                <select name="facility" id="search-facility" className="select select-bordered w-full" defaultValue={'DEFAULT'} >
+                <select
+                  name="facility"
+                  id="search-facility"
+                  className="select select-bordered w-full"
+                  defaultValue={'DEFAULT'}
+                  onChange={onHandleChange}
+                >
                   <option disabled value="DEFAULT">Select Facility</option>
                   <option value={1}>AVCF</option>
                   <option value={2}>ACC</option>
@@ -79,11 +114,30 @@ function SideBarBottom() {
                 </select>
               </div>
             </li>
+
+            <li>
+              <div className="form-control w-full max-w-xs">
+                <label className="label" htmlFor="search-gender">
+                  <span className="label-text">Gender:</span>
+                </label>
+                <select
+                  name="gender"
+                  id="search-gender"
+                  className="select select-bordered w-full"
+                  defaultValue={'DEFAULT'}
+                  onChange={onHandleChange}
+                >
+                  <option disabled value="DEFAULT">Select Gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+              </div>
+            </li> */}
+
             <li>
               <div className="form-control w-full max-w-xs">
                 <div className="btn-group btn-group-vertical lg:btn-group-horizontal">
-                  <button type="submit" className="btn btn-active">Search</button>
-                  <button type="reset" className="btn">Reset</button>
+                  <button type="reset" className="btn w-64">Reset</button>
                 </div>
               </div>
             </li>

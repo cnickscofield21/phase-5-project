@@ -2,7 +2,7 @@ import {Link} from 'react-router-dom';
 import {FaPencilAlt, FaTrashAlt} from 'react-icons/fa';
 import SideBarBottom from "./SideBarBottom";
 
-function ClientIndex({clients, onDeleteClient, clientSort}) {
+function ClientIndex({searchResults, onDeleteClient, clientSort, onHandleChange, onHandleReset}) {
   function handleDeleteClick(e, first_name, last_name) {
     if (window.confirm(`Permanently delete record for ${first_name} ${last_name}?`)) {
       const id = (e.target.tagName === "path") ? e.target.parentNode.dataset.id : e.target.dataset.id;
@@ -24,18 +24,18 @@ function ClientIndex({clients, onDeleteClient, clientSort}) {
     e.target.dataset.sortOrder = (parseInt(e.target.dataset.sortOrder, 10) === 0) ? 1 : 0;
   }
 
-  const clientRows = clients.map(client => {
+  const clientRows = searchResults.map(client => {
     const {id, last_name, first_name, middle_initial, doc_number, gender, facility} = client;
     const editPath = `/clients/edit/${id}`;
 
     return (
       <tr key={id}>
-        <td>{last_name}</td>
-        <td>{first_name}</td>
-        <td>{middle_initial}</td>
-        <td>{doc_number}</td>
-        <td>{gender.charAt(0)}</td>
-        <td>{facility.acronymn}</td>
+        <td className="pl-2">{last_name}</td>
+        <td className="pl-2 -pr-4">{first_name}</td>
+        <td className="text-center">{middle_initial}</td>
+        <td className="text-center">{doc_number}</td>
+        <td className="text-center">{gender.charAt(0)}</td>
+        <td className="text-center">{facility.acronymn}</td>
         <td className="text-center">
           <Link to={editPath}>
             <button
@@ -70,7 +70,7 @@ function ClientIndex({clients, onDeleteClient, clientSort}) {
         {/* <!-- Page content here --> */}
         <h1 className="text-2xl font-bold justify-center">Manage Clients</h1>
         <div className="min-w-max">
-          <table className="table-zebra mt-12 min-w-full">
+          <table className="table-zebra mt-10 min-w-full">
             <thead>
               <tr>
                 <th className="hover:text-success cursor-pointer" onClick={onSortClick} data-sort-order={0} data-sort-by="last_name">Last Name</th>
@@ -90,7 +90,7 @@ function ClientIndex({clients, onDeleteClient, clientSort}) {
         </div>
         <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden mt-8">Menu</label>
       </div>
-      <SideBarBottom />
+      <SideBarBottom onHandleChange={onHandleChange} onHandleReset={onHandleReset} />
     </div>
   )
 }
